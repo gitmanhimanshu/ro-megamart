@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Romegamart — India's 1st and largest B2B Marketplace for the RO Industry, connecting manufacturers, dealers, distributors, retailers, and technicians."
+    />
+    <!-- Open Graph (WhatsApp / Facebook / LinkedIn) -->
+    <meta property="og:title" content="Romegamart — B2B Marketplace for RO Industry" />
+    <meta property="og:description" content="Buy &amp; sell wholesale RO spares, membranes, pumps &amp; water purifiers. 2000+ verified sellers across India." />
+    <meta property="og:image" content="https://romegamart.com/romegamart-logo.webp" />
+    <meta property="og:url" content="https://romegamart.com" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Romegamart" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Romegamart — B2B RO Marketplace" />
+    <meta name="twitter:description" content="India's largest B2B marketplace for the RO &amp; water-treatment industry." />
+    <meta name="twitter:image" content="https://romegamart.com/romegamart-logo.webp" />
+    <!-- Canonical -->
+    <link rel="canonical" href="https://romegamart.com" />
+    <!-- Structured Data (JSON-LD) — always in initial HTML -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Romegamart",
+      "url": "https://romegamart.com",
+      "description": "India's 1st and largest B2B Marketplace for the RO Industry",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://romegamart.com/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Romegamart",
+      "url": "https://romegamart.com",
+      "logo": "https://romegamart.com/romegamart-logo.webp",
+      "description": "India's 1st and largest B2B Marketplace for the RO Industry",
+      "founder": { "@type": "Person", "name": "Pramod Bajaj" },
+      "address": { "@type": "PostalAddress", "addressCountry": "IN" },
+      "sameAs": []
+    }
+    </script>
+    <!-- Modern type pairing: Space Grotesk (geometric display) + Inter (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Romegamart — B2B Marketplace for the RO Industry</title>
+
+    <!-- Initial loading splash — pure HTML/CSS so it paints instantly,
+         before the JS bundle and React have even loaded. main.jsx fades
+         this out once the app has mounted. Prevents a blank white flash.
+         Premium minimal water-brand look: soft ice-blue gradient, glowing
+         droplet, floating bubbles, rotating loading ring, expanding ripple. -->
+    <style>
+      #initial-loader {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        overflow: hidden;
+        background: linear-gradient(180deg, #ffffff 0%, #f5faff 55%, #eaf4ff 100%);
+        transition: opacity 0.5s ease, visibility 0.5s ease;
+      }
+      #initial-loader.loader-hide {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      /* Ambient floating bubbles — soft, blurred, gently bobbing */
+      #initial-loader .rm-bubble {
+        position: absolute;
+        border-radius: 9999px;
+        background: radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.95), rgba(107, 203, 255, 0.25) 70%);
+        border: 1px solid rgba(107, 203, 255, 0.35);
+        filter: blur(0.3px);
+        animation: rm-bob ease-in-out infinite;
+      }
+
+      /* Centered content — fluid spacing so it fits any screen height */
+      #initial-loader .rm-content {
+        position: relative;
+        z-index: 1;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: clamp(10px, 2vh, 14px);
+        padding: 24px 16px clamp(6vh, 8vh, 90px);
+        box-sizing: border-box;
+      }
+
+      /* Logo + droplet — logo is the main circular mark with an ambient glow,
+         and a small droplet floats just above it for the water theme. */
+      #initial-loader .rm-logo-wrap {
+        position: relative;
+        display: grid;
+        place-items: center;
+        width: clamp(60px, 13vw, 76px);
+        height: clamp(60px, 13vw, 76px);
+        margin-top: clamp(16px, 4vw, 24px);
+        opacity: 0;
+        animation: rm-fade-up 0.7s ease 0.1s forwards;
+      }
+      #initial-loader .rm-glow {
+        position: absolute;
+        inset: -18px;
+        border-radius: 9999px;
+        background: radial-gradient(circle, rgba(107, 203, 255, 0.5) 0%, rgba(107, 203, 255, 0) 70%);
+        animation: rm-glow-pulse 2.6s ease-in-out infinite;
+      }
+      #initial-loader .rm-logo {
+        position: relative;
+        display: block;
+        /* Sized independently of the wrap so the logo is always a square,
+           capped box on every screen — never inherits an odd intrinsic
+           width from the <img> before/while it loads. */
+        width: clamp(60px, 13vw, 76px);
+        height: clamp(60px, 13vw, 76px);
+        max-width: 76px;
+        max-height: 76px;
+        aspect-ratio: 1 / 1;
+        box-sizing: border-box;
+        border-radius: 9999px;
+        object-fit: contain;
+        background: #fff;
+        padding: 6px;
+        box-shadow: 0 10px 26px rgba(10, 77, 255, 0.2), 0 0 0 1px rgba(29, 110, 255, 0.12);
+        animation: rm-droplet-float 3.4s ease-in-out infinite;
+      }
+      /* Wordmark + tagline */
+      #initial-loader .rm-word {
+        margin: 0;
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 700;
+        font-size: clamp(22px, 6vw, 34px);
+        letter-spacing: 0.01em;
+        color: #0a1f44;
+        text-align: center;
+        opacity: 0;
+        animation: rm-fade-up 0.7s ease 0.3s forwards;
+      }
+      #initial-loader .rm-word .accent {
+        background: linear-gradient(90deg, #1d6eff, #6bcbff);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      #initial-loader .rm-tagline {
+        margin: 2px 0 0;
+        display: flex;
+        align-items: center;
+        gap: clamp(7px, 2vw, 10px);
+        font-family: Inter, sans-serif;
+        font-size: clamp(10px, 2.8vw, 13px);
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: #5c7290;
+        text-align: center;
+        opacity: 0;
+        animation: rm-fade-up 0.7s ease 0.45s forwards;
+      }
+      #initial-loader .rm-tagline .accent {
+        color: #1d6eff;
+        font-weight: 600;
+      }
+      #initial-loader .rm-tagline-line {
+        width: 22px;
+        height: 1px;
+        background: #c3d8f5;
+      }
+
+      /* Loading ring + label */
+      #initial-loader .rm-ring-wrap {
+        margin-top: 18px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        opacity: 0;
+        animation: rm-fade-up 0.7s ease 0.6s forwards;
+      }
+      #initial-loader .rm-ring {
+        width: 38px;
+        height: 38px;
+        border-radius: 9999px;
+        border: 3px solid #dceaff;
+        border-top-color: #1d6eff;
+        animation: rm-spin 0.9s linear infinite;
+      }
+      #initial-loader .rm-loading-text {
+        font-family: Inter, sans-serif;
+        font-size: 12px;
+        font-weight: 500;
+        color: #1d6eff;
+        letter-spacing: 0.04em;
+      }
+
+      /* Ripple — concentric rings expanding from a center point at the bottom */
+      #initial-loader .rm-ripple-zone {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 30%;
+        background: linear-gradient(180deg, rgba(107, 203, 255, 0) 0%, rgba(107, 203, 255, 0.12) 100%);
+        overflow: hidden;
+      }
+      #initial-loader .rm-ripple {
+        position: absolute;
+        left: 50%;
+        bottom: -1px;
+        width: 10px;
+        height: 10px;
+        border: 1.5px solid rgba(29, 110, 255, 0.45);
+        border-radius: 9999px;
+        transform: translate(-50%, 50%) scale(0);
+        animation: rm-ripple-expand 3s ease-out infinite;
+      }
+      #initial-loader .rm-ripple.r2 { animation-delay: 1s; }
+      #initial-loader .rm-ripple.r3 { animation-delay: 2s; }
+
+      @keyframes rm-bob {
+        0%, 100% { transform: translateY(0); opacity: 0.7; }
+        50% { transform: translateY(-14px); opacity: 1; }
+      }
+      @keyframes rm-droplet-float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-8px); }
+      }
+      @keyframes rm-glow-pulse {
+        0%, 100% { transform: scale(0.9); opacity: 0.7; }
+        50% { transform: scale(1.15); opacity: 1; }
+      }
+      @keyframes rm-fade-up {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes rm-spin {
+        to { transform: rotate(360deg); }
+      }
+      @keyframes rm-ripple-expand {
+        0% { width: 10px; height: 10px; opacity: 0.8; }
+        100% { width: 340px; height: 340px; opacity: 0; }
+      }
+
+      /* Hide a couple of the bubbles on very small screens to avoid crowding. */
+      @media (max-width: 380px) {
+        #initial-loader .rm-bubble.opt { display: none; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        #initial-loader .rm-bubble,
+        #initial-loader .rm-logo,
+        #initial-loader .rm-glow,
+        #initial-loader .rm-ring,
+        #initial-loader .rm-ripple { animation: none; }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="initial-loader" role="status" aria-label="Loading Romegamart">
+      <!-- Ambient bubbles -->
+      <span class="rm-bubble" style="left: 10%; top: 22%; width: 22px; height: 22px; animation-duration: 5s; animation-delay: 0.2s;"></span>
+      <span class="rm-bubble opt" style="left: 18%; top: 32%; width: 10px; height: 10px; animation-duration: 4s; animation-delay: 1.1s;"></span>
+      <span class="rm-bubble" style="left: 86%; top: 18%; width: 12px; height: 12px; animation-duration: 4.5s; animation-delay: 0.6s;"></span>
+      <span class="rm-bubble opt" style="left: 92%; top: 48%; width: 18px; height: 18px; animation-duration: 5.5s; animation-delay: 1.6s;"></span>
+      <span class="rm-bubble" style="left: 8%; top: 78%; width: 16px; height: 16px; animation-duration: 5.2s; animation-delay: 0.4s;"></span>
+      <span class="rm-bubble" style="left: 94%; top: 80%; width: 13px; height: 13px; animation-duration: 4.8s; animation-delay: 1.4s;"></span>
+
+      <!-- Ripple at the base -->
+      <div class="rm-ripple-zone">
+        <span class="rm-ripple r1"></span>
+        <span class="rm-ripple r2"></span>
+        <span class="rm-ripple r3"></span>
+      </div>
+
+      <div class="rm-content">
+        <div class="rm-logo-wrap">
+          <span class="rm-glow"></span>
+          <img class="rm-logo" src="/romegamart-logo.webp" alt="Romegamart logo" />
+        </div>
+
+        <p class="rm-word">ROME<span class="accent">GAMART</span></p>
+        <p class="rm-tagline">
+          <span class="rm-tagline-line"></span>
+          Pure Water. <span class="accent">Better Life.</span>
+          <span class="rm-tagline-line"></span>
+        </p>
+
+        <div class="rm-ring-wrap">
+          <span class="rm-ring"></span>
+          <span class="rm-loading-text">Loading…</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-slate-50 text-navy-900 font-sans antialiased;
+  }
+
+  /* Modern focus ring for accessibility */
+  :focus-visible {
+    @apply outline-none ring-2 ring-aqua-400 ring-offset-2 ring-offset-white;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display tracking-tight;
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbars on horizontal scroll strips while keeping scroll */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Line clamp helpers */
+  .clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Scroll-reveal: hidden until .is-visible toggled by IntersectionObserver */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Hide native search cancel button (Chrome/Safari/Edge) */
+  .search-cancel-hidden::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+    display: none;
+  }
+  .search-cancel-hidden::-moz-search-cancel-button {
+    display: none;
+  }
+
+  /* Ken Burns — slow zoom + pan for banner images */
+  .animate-kenburns {
+    animation: kenburns 8s ease-in-out infinite alternate;
+  }
+
+  @keyframes kenburns {
+    0% {
+      transform: scale(1) translate(0, 0);
+    }
+    33% {
+      transform: scale(1.08) translate(-1%, -1%);
+    }
+    66% {
+      transform: scale(1.05) translate(1%, 0%);
+    }
+    100% {
+      transform: scale(1.1) translate(0%, -1%);
+    }
+  }
+
+  /* SEO Blog Popular Links */
+  .popular-links {
+    @apply grid grid-cols-2 gap-x-4 gap-y-2 mt-3;
+    list-style: none;
+    padding: 0;
+  }
+
+  .popular-links li {
+    @apply text-sm;
+  }
+
+  .popular-links a {
+    @apply text-aqua-600 hover:text-aqua-800 hover:underline cursor-pointer;
+    text-decoration: none;
+  }
+
+  .popular-links a:hover {
+    text-decoration: underline;
+  }
+}
